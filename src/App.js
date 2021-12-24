@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import StatesMap from "./StatesMap";
 import State from "./State";
+import StatesApi from "./api";
 
 function App() {
-  const US_MAP_URL =
-    "https://cdn.jsdelivr.net/npm/us-atlas@3/states-albers-10m.json";
-
   const [statesData, setStatesData] = useState(null);
 
   useEffect(() => {
     (async () => {
-      const res = await fetch(US_MAP_URL);
-      const statesData = await res.json();
+      const statesData = await StatesApi.getStatesData();
       setStatesData(statesData);
     })();
   }, []);
@@ -31,6 +28,7 @@ function App() {
             element={<StatesMap statesData={statesData} />}
           />
           <Route path="/state/:name" element={<State />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </div>
