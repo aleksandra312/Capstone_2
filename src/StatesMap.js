@@ -52,7 +52,7 @@ function StatesMap({ statesData }) {
   }, []);
 
   function handleClick(event, d) {
-    navigate(`/state/${d.properties.name}`);
+    navigate(`/state/${d.id}/${d.properties.name}`);
   }
 
   return (

@@ -3,5 +3,14 @@ const STATES_MAP_URL =
 const WIKI_URL = "https://en.wikipedia.org/w/api.php";
 const CHECK_STATES = ["New York", "Washington"];
 const GEORGIA_STATE = "Georgia";
+const CENSUS_DATA_URL = "https://api.census.gov";
+const YEARS_RANGE = 4;
 
-export { STATES_MAP_URL, WIKI_URL, CHECK_STATES, GEORGIA_STATE };
+export {
+  STATES_MAP_URL,
+  WIKI_URL,
+  CENSUS_DATA_URL,
+  CHECK_STATES,
+  GEORGIA_STATE,
+  YEARS_RANGE,
+};

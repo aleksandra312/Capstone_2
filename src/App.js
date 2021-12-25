@@ -27,7 +27,7 @@ function App() {
             path="/"
             element={<StatesMap statesData={statesData} />}
           />
-          <Route path="/state/:name" element={<State />} />
+          <Route path="/state/:id/:name" element={<State />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>

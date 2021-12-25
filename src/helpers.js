@@ -5,4 +5,14 @@ const getWikiPageExtract = (res) => {
   return splittedExtract[0];
 };
 
-export { getWikiPageExtract };
+const getYearsRange = (range) => {
+  let years = [];
+  let endYear = new Date().getFullYear() - 2;
+  let startYear = endYear - range;
+  while (startYear <= endYear) {
+    years.push(startYear++);
+  }
+  return years;
+};
+
+export { getWikiPageExtract, getYearsRange };
