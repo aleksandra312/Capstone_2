@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import StatesApi from "./api";
+import ExternalApi from "./api/externalApi";
 import { getWikiPageExtract } from "./helpers";
 import PopulationGraph from "./PopulationGraph";
+import CommentsList from "./CommentsList";
 
-const State = () => {
-  const { id, name } = useParams();
+const State = ({ stateId, comments }) => {
+  const { name } = useParams();
 
   const [stateInfo, setStateInfo] = useState(null);
 
   useEffect(() => {
     (async () => {
-      const res = await StatesApi.getStateInfo(name);
+      const res = await ExternalApi.getStateInfo(name);
       setStateInfo(getWikiPageExtract(res));
     })();
   }, [name]);
@@ -21,7 +22,8 @@ const State = () => {
       <h1>{name}</h1>
       <div>
         <p>{stateInfo}</p>
-        <PopulationGraph id={id} />
+        <PopulationGraph id={stateId} />
+        <CommentsList usState={name} comments={comments} />
       </div>
     </div>
   );

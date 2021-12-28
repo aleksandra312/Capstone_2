@@ -4,9 +4,9 @@ import {
   STATES_MAP_URL,
   WIKI_URL,
   CENSUS_DATA_URL,
-} from "./appConstants";
+} from "../appConstants";
 
-class StatesApi {
+class ExternalApi {
   static async getStatesData() {
     const res = await fetch(STATES_MAP_URL);
     return res.json();
@@ -30,4 +30,4 @@ class StatesApi {
   }
 }
 
-export default StatesApi;
+export default ExternalApi;
