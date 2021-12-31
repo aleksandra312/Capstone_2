@@ -7,6 +7,7 @@ import NewCommentForm from "./survey/NewCommentForm";
 import ExternalApi from "./api/externalApi";
 import StatesTrendsApi from "./api/statesTrendsApi";
 import LoadingSpinner from "./LoadingSpinner";
+import NavBar from "./NavBar";
 import { v4 as uuid } from "uuid";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route
             exact

@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import useFields from "../hooks/useFields";
 import moment from "moment";
+import "../stylesheets/NewCommentForm.css";
+import { Link } from "react-router-dom";
 
 function NewCommentForm({ addComment, usState }) {
   const INITIAL_STATE = {
@@ -18,7 +20,6 @@ function NewCommentForm({ addComment, usState }) {
   function handleSubmit(e) {
     e.preventDefault();
     const newComment = generateNewComment();
-    console.log("NEW", newComment);
     addComment(newComment);
     navigate(`/state/${usState}`);
   }
@@ -38,27 +39,38 @@ function NewCommentForm({ addComment, usState }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="isRelocate">Would you move here?</label>
-      <select
-        type="text"
-        id="isRelocate"
-        name="isRelocate"
-        value={formData.isRelocate}
-        onChange={handleChange}
-      >
-        <option value={true}>Yes</option>
-        <option value={false}>No</option>
-      </select>
-      <label htmlFor="comment">Tell us why</label>
-      <input
-        id="comment"
-        type="text"
-        name="comment"
-        value={formData.comment}
-        onChange={handleChange}
-      />
-      <button>Add</button>
+    <form
+      className="NewCommentForm col-md-8 offset-md-2"
+      onSubmit={handleSubmit}
+    >
+      <div class="form-group">
+        <label htmlFor="isRelocate">Would you move to {usState}?</label>
+        <select
+          className="form-control"
+          type="text"
+          id="isRelocate"
+          name="isRelocate"
+          value={formData.isRelocate}
+          onChange={handleChange}
+        >
+          <option value={true}>Yes</option>
+          <option value={false}>No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label htmlFor="comment">Tell us why</label>
+        <textarea
+          className="form-control"
+          id="comment"
+          type="text"
+          name="comment"
+          rows="3"
+          value={formData.comment}
+          onChange={handleChange}
+          required
+        ></textarea>
+      </div>
+      <button className="btn btn-sm btn-success">Add</button>
     </form>
   );
 }
