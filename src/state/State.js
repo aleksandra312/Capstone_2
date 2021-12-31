@@ -6,13 +6,14 @@ import { getWikiPageExtract, sumPropValues } from "../helpers/helpers";
 import { getYearsForRange, getDatesForSurvey } from "../helpers/helpers";
 import PopulationGraph from "../population/PopulationGraph";
 import CommentsList from "../survey/CommentsList";
+import StateInfo from "./StateInfo";
 import PopulationTrendMsg from "../population/PopulationTrendMsg";
 import { YEARS_RANGE, CENSUS_POP_NUM_YRS_FROM_TODAY } from "../appConstants";
 
 const State = ({ stateId, comments }) => {
   const { name } = useParams();
 
-  const [stateInfo, setStateInfo] = useState(null);
+  const [stateInfo, setStateInfo] = useState([]);
   const [population, setPopulation] = useState([]);
   const [surveyData, setSurveyData] = useState([]);
   const [populationTrend, setPopulationTrend] = useState([]);
@@ -25,7 +26,7 @@ const State = ({ stateId, comments }) => {
   useEffect(() => {
     setStateDescr();
     setStatePopulation();
-    getStateSurveyData();
+    setStateSurveyData();
   }, [name]);
 
   async function setStateDescr() {
@@ -43,7 +44,7 @@ const State = ({ stateId, comments }) => {
     setPopulation(newPopulation);
   }
 
-  async function getStateSurveyData() {
+  async function setStateSurveyData() {
     const dates = getDatesForSurvey(YEARS_RANGE);
 
     let res = await StatesTrendsApi.getSurveyData(
@@ -86,11 +87,9 @@ const State = ({ stateId, comments }) => {
     <div className="State">
       <h1>{name}</h1>
       <div>
-        <p>{stateInfo}</p>
-        <h2>State Population</h2>
-        <PopulationGraph data={population} />
-        <h2>State Popularity</h2>
-        <PopulationGraph data={surveyData} />
+        <StateInfo stateInfo={stateInfo} />
+        <PopulationGraph data={population} header="State Population" />
+        <PopulationGraph data={surveyData} header="State Popularity" />
         <PopulationTrendMsg populationTrend={populationTrend} />
         <CommentsList usState={name} comments={comments} />
       </div>
