@@ -86,9 +86,8 @@ const State = ({ stateId, comments }) => {
 
   return (
     <div className="State">
-      <h1>{name}</h1>
       <div>
-        <StateInfo stateInfo={stateInfo} />
+        <StateInfo name={name} stateInfo={stateInfo} />
         {population.length ? (
           <PopulationGraph data={population} header="State Population" />
         ) : (

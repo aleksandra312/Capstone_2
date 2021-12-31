@@ -28,7 +28,7 @@ function CommentsList({ usState, comments }) {
         to={`/state/${usState}/trend/new`}
         key={uuid()}
       >
-        <button>Add New</button>
+        <button className="add-comment btn btn-success">Add New</button>
       </Link>
     </div>
   );

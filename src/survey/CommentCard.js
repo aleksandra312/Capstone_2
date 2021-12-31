@@ -9,11 +9,17 @@ function CommentCard({ username, createDate, comment, isRelocate }) {
       <div className="card-body">
         <h6 className="card-title">
           <p>{formatDate(createDate)}</p>
-          <p>{username}</p>
         </h6>
-        <p>
-          <small>{comment}</small>
-        </p>
+        <p>{comment}</p>
+        <footer className="card-subtitle mb-2 text-muted">
+          <cite>
+            {isRelocate ? (
+              <p>I would like to move here.</p>
+            ) : (
+              <p>I would not move here.</p>
+            )}
+          </cite>
+        </footer>
       </div>
     </div>
   );

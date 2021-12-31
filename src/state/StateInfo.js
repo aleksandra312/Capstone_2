@@ -1,8 +1,10 @@
 import React from "react";
+import "../stylesheets/StateInfo.css";
 
-function StateInfo({ stateInfo }) {
+function StateInfo({ name, stateInfo }) {
   return (
-    <div className="StateInfo">
+    <div className="StateInfo col-md-8 offset-md-2">
+      <h1>{name}</h1>
       {stateInfo.length ? (
         <p>{stateInfo}</p>
       ) : (
