@@ -6,6 +6,7 @@ import State from "./state/State";
 import NewCommentForm from "./survey/NewCommentForm";
 import ExternalApi from "./api/externalApi";
 import StatesTrendsApi from "./api/statesTrendsApi";
+import LoadingSpinner from "./LoadingSpinner";
 import { v4 as uuid } from "uuid";
 
 function App() {
@@ -39,9 +40,7 @@ function App() {
     await StatesTrendsApi.postComment(newComment);
   }
 
-  if (!statesData) {
-    return <div>Loading...</div>;
-  }
+  if (!statesData) return <LoadingSpinner />;
 
   return (
     <div className="App">

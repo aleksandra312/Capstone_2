@@ -7,6 +7,7 @@ import { getYearsForRange, getDatesForSurvey } from "../helpers/helpers";
 import PopulationGraph from "../population/PopulationGraph";
 import CommentsList from "../survey/CommentsList";
 import StateInfo from "./StateInfo";
+import LoadingSpinner from "../LoadingSpinner";
 import PopulationTrendMsg from "../population/PopulationTrendMsg";
 import { YEARS_RANGE, CENSUS_POP_NUM_YRS_FROM_TODAY } from "../appConstants";
 
@@ -88,7 +89,11 @@ const State = ({ stateId, comments }) => {
       <h1>{name}</h1>
       <div>
         <StateInfo stateInfo={stateInfo} />
-        <PopulationGraph data={population} header="State Population" />
+        {population.length ? (
+          <PopulationGraph data={population} header="State Population" />
+        ) : (
+          <LoadingSpinner />
+        )}
         <PopulationGraph data={surveyData} header="State Popularity" />
         <PopulationTrendMsg populationTrend={populationTrend} />
         <CommentsList usState={name} comments={comments} />
