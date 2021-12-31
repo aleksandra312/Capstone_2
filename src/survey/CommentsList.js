@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CommentCard from "./CommentCard";
-import StatesTrendsApi from "./api/statesTrendsApi";
+import StatesTrendsApi from "../api/statesTrendsApi";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 

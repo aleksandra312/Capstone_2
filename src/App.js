@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import useLocalStorage from "./hooks/useLocalStorage";
-import StatesMap from "./StatesMap";
-import State from "./State";
-import NewCommentForm from "./NewCommentForm";
+import StatesMap from "./state/StatesMap";
+import State from "./state/State";
+import NewCommentForm from "./survey/NewCommentForm";
 import ExternalApi from "./api/externalApi";
 import StatesTrendsApi from "./api/statesTrendsApi";
 import { v4 as uuid } from "uuid";

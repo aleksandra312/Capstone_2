@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ExternalApi from "./api/externalApi";
-import StatesTrendsApi from "./api/statesTrendsApi";
-import { getWikiPageExtract, sumPropValues } from "./helpers";
-import { getYearsForRange, getDatesForSurvey } from "./helpers";
-import PopulationGraph from "./PopulationGraph";
-import CommentsList from "./CommentsList";
-import PopulationTrendMsg from "./PopulationTrendMsg";
-import { YEARS_RANGE, CENSUS_POP_NUM_YRS_FROM_TODAY } from "./appConstants";
+import ExternalApi from "../api/externalApi";
+import StatesTrendsApi from "../api/statesTrendsApi";
+import { getWikiPageExtract, sumPropValues } from "../helpers/helpers";
+import { getYearsForRange, getDatesForSurvey } from "../helpers/helpers";
+import PopulationGraph from "../population/PopulationGraph";
+import CommentsList from "../survey/CommentsList";
+import PopulationTrendMsg from "../population/PopulationTrendMsg";
+import { YEARS_RANGE, CENSUS_POP_NUM_YRS_FROM_TODAY } from "../appConstants";
 
 const State = ({ stateId, comments }) => {
   const { name } = useParams();

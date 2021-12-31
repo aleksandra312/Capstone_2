@@ -27,9 +27,14 @@ const sumPropValues = (items, prop) => {
   }, 0);
 };
 
+const formatDate = (dateTime) => {
+  return dateTime.split("T")[0];
+};
+
 export {
   getWikiPageExtract,
   getYearsForRange,
   getDatesForSurvey,
   sumPropValues,
+  formatDate,
 };

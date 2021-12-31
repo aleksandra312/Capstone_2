@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import useFields from "./hooks/useFields";
+import useFields from "../hooks/useFields";
 import moment from "moment";
 
 function NewCommentForm({ addComment, usState }) {
