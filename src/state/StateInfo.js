@@ -3,7 +3,7 @@ import "../stylesheets/StateInfo.css";
 
 function StateInfo({ name, stateInfo }) {
   return (
-    <div className="StateInfo col-md-8 offset-md-2">
+    <div className="StateInfo">
       <h1>{name}</h1>
       {stateInfo.length ? (
         <p>{stateInfo}</p>

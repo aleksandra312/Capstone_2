@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
+import "../stylesheets/StatesMap.css";
 
 function StatesMap({ statesData, setStateInfo }) {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ function StatesMap({ statesData, setStateInfo }) {
   }
 
   return (
-    <div className="StatesMap">
+    <div className="StatesMap col-md-8 offset-md-1">
       <svg ref={svgRef} width={width} height={height} />
     </div>
   );

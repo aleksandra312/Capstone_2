@@ -4,7 +4,7 @@ import "../stylesheets/PopulationGraph.css";
 
 function PopulationGraph({ data, header }) {
   return (
-    <div className="PopulationGraph col-md-8 offset-md-2">
+    <div className="PopulationGraph">
       <h3>{header}</h3>
       {data.length ? <SvgGraph data={data} /> : <p className="lead">No data</p>}
     </div>

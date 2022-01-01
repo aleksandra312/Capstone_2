@@ -24,7 +24,7 @@ function PopulationTrendMsg({ populationTrend }) {
   };
 
   return (
-    <div className="PopulationTrendMsg col-md-8 offset-md-2">
+    <div className="PopulationTrendMsg">
       {populationTrend.length ? (
         <p>
           According to our survey data, state population trend will{" "}
@@ -36,7 +36,7 @@ function PopulationTrendMsg({ populationTrend }) {
           />
         </p>
       ) : (
-        <p></p>
+        <p>Not enough responses to display population trend.</p>
       )}
     </div>
   );

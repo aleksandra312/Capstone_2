@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 
 function CommentsList({ usState, comments }) {
   return (
-    <div className="CompanyList col-md-8 offset-md-2">
+    <div className="CompanyList">
       {comments.length ? (
         <div className="CompanyList-list">
           {comments.map((c) => (
@@ -28,7 +28,7 @@ function CommentsList({ usState, comments }) {
         to={`/state/${usState}/trend/new`}
         key={uuid()}
       >
-        <button className="add-comment btn btn-success">Add New</button>
+        <button className="add-comment btn btn-outline-success">Add New</button>
       </Link>
     </div>
   );

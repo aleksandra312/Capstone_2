@@ -70,7 +70,7 @@ function NewCommentForm({ addComment, usState }) {
           required
         ></textarea>
       </div>
-      <button className="btn btn-sm btn-success">Add</button>
+      <button className="btn btn-outline-success">Add</button>
     </form>
   );
 }

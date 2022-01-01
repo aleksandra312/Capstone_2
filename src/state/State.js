@@ -64,7 +64,7 @@ const State = ({ stateId, comments }) => {
   };
 
   const setPopTrendPrediction = (res) => {
-    if (res.length) {
+    if (res.length >= 2) {
       const currentYear = new Date().getFullYear();
       const lastTwoYrs = res.filter(
         (obj) => obj.year === currentYear || obj.year === currentYear - 1
@@ -85,7 +85,7 @@ const State = ({ stateId, comments }) => {
   };
 
   return (
-    <div className="State">
+    <div className="State col-md-8 offset-md-2">
       <div>
         <StateInfo name={name} stateInfo={stateInfo} />
         {population.length ? (
@@ -93,7 +93,11 @@ const State = ({ stateId, comments }) => {
         ) : (
           <LoadingSpinner />
         )}
-        <PopulationGraph data={surveyData} header="State Popularity" />
+        {surveyData.length >= 2 ? (
+          <PopulationGraph data={surveyData} header="State Popularity" />
+        ) : (
+          <p></p>
+        )}
         <PopulationTrendMsg populationTrend={populationTrend} />
         <CommentsList usState={name} comments={comments} />
       </div>

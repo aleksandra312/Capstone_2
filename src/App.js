@@ -7,7 +7,7 @@ import NewCommentForm from "./survey/NewCommentForm";
 import ExternalApi from "./api/externalApi";
 import StatesTrendsApi from "./api/statesTrendsApi";
 import LoadingSpinner from "./LoadingSpinner";
-import NavBar from "./NavBar";
+import NavBar from "./navigation/NavBar";
 import { v4 as uuid } from "uuid";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    getStateComments();
+    setStateComments();
   }, [stateInfo]);
 
   async function setStatesMap() {
@@ -28,7 +28,7 @@ function App() {
     setStatesData(statesData);
   }
 
-  async function getStateComments() {
+  async function setStateComments() {
     let comments = await StatesTrendsApi.getComments(stateInfo.stateName);
     setComments(comments);
   }
