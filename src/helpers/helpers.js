@@ -31,10 +31,15 @@ const formatDate = (dateTime) => {
   return dateTime.split("T")[0];
 };
 
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 export {
   getWikiPageExtract,
   getYearsForRange,
   getDatesForSurvey,
   sumPropValues,
   formatDate,
+  capitalizeFirstLetter,
 };

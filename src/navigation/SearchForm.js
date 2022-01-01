@@ -1,20 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import StatesContext from "../StatesContext";
+import { capitalizeFirstLetter } from "../helpers/helpers";
 
 function SearchForm() {
   const navigate = useNavigate();
 
+  const { statesData } = useContext(StatesContext);
+  const { stateInfo, setStateInfo } = useContext(StatesContext);
+
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchErr, setSearchErr] = useState("");
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    setSearchTerm(searchTerm.trim());
-    navigate(`/state/${searchTerm}`);
-    setSearchTerm("");
+
+    const foundState = findState();
+
+    if (!foundState.length) {
+      setSearchErr("State not found");
+    } else {
+      setSearchErr("");
+      setStateInfo({
+        stateId: foundState[0].id,
+        stateName: foundState[0].properties.name,
+      });
+      navigate(`/state/${searchTerm}`);
+      setSearchTerm("");
+    }
   }
 
+  const findState = () => {
+    const states = statesData.objects.states.geometries;
+    return states.filter((state) => searchTerm === state.properties.name);
+  };
+
   function handleChange(evt) {
-    setSearchTerm(evt.target.value);
+    const search = capitalizeFirstLetter(evt.target.value.toLowerCase());
+    setSearchTerm(search);
   }
 
   return (
@@ -31,6 +54,11 @@ function SearchForm() {
       <button className="SearchForm-btn btn btn-outline-success" type="submit">
         Search
       </button>
+      <div className="col-sm-2">
+        <small id="searchErr" className="text-danger">
+          {searchErr}
+        </small>
+      </div>
     </form>
   );
 }

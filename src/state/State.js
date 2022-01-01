@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ExternalApi from "../api/externalApi";
 import StatesTrendsApi from "../api/statesTrendsApi";
@@ -10,11 +10,14 @@ import StateInfo from "./StateInfo";
 import LoadingSpinner from "../LoadingSpinner";
 import PopulationTrendMsg from "../population/PopulationTrendMsg";
 import { YEARS_RANGE, CENSUS_POP_NUM_YRS_FROM_TODAY } from "../appConstants";
+import StatesContext from "../StatesContext";
 
-const State = ({ stateId, comments }) => {
+const State = ({ comments }) => {
   const { name } = useParams();
 
-  const [stateInfo, setStateInfo] = useState([]);
+  const { stateInfo } = useContext(StatesContext);
+
+  const [stateDescr, setStateDescr] = useState([]);
   const [population, setPopulation] = useState([]);
   const [surveyData, setSurveyData] = useState([]);
   const [populationTrend, setPopulationTrend] = useState([]);
@@ -25,20 +28,20 @@ const State = ({ stateId, comments }) => {
   );
 
   useEffect(() => {
-    setStateDescr();
+    setStateWikiDescr();
     setStatePopulation();
     setStateSurveyData();
   }, [name]);
 
-  async function setStateDescr() {
+  async function setStateWikiDescr() {
     const res = await ExternalApi.getStateInfo(name);
-    setStateInfo(getWikiPageExtract(res));
+    setStateDescr(getWikiPageExtract(res));
   }
 
   async function setStatePopulation() {
     const newPopulation = [];
     for (let year of censusYears) {
-      const res = await ExternalApi.getStatePopulation(stateId, year);
+      const res = await ExternalApi.getStatePopulation(stateInfo.stateId, year);
       let value = res[1][0];
       newPopulation.push({ value, year });
     }
@@ -87,7 +90,7 @@ const State = ({ stateId, comments }) => {
   return (
     <div className="State col-md-8 offset-md-2">
       <div>
-        <StateInfo name={name} stateInfo={stateInfo} />
+        <StateInfo name={name} stateDescr={stateDescr} />
         {population.length ? (
           <PopulationGraph data={population} header="State Population" />
         ) : (

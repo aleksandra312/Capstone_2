@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import useFields from "../hooks/useFields";
 import moment from "moment";
 import "../stylesheets/NewCommentForm.css";
 import { Link } from "react-router-dom";
+import StatesContext from "../StatesContext";
 
-function NewCommentForm({ addComment, usState }) {
+function NewCommentForm({ addComment }) {
+  const { stateInfo } = useContext(StatesContext);
+  const usState = stateInfo.stateName;
+
   const INITIAL_STATE = {
     createDate: "",
     username: "",

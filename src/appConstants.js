@@ -4,7 +4,7 @@ const WIKI_URL = "https://en.wikipedia.org/w/api.php";
 const CHECK_STATES = ["New York", "Washington"];
 const GEORGIA_STATE = "Georgia";
 const CENSUS_DATA_URL = "https://api.census.gov";
-const CENSUS_POP_NUM_YRS_FROM_TODAY = 2;
+const CENSUS_POP_NUM_YRS_FROM_TODAY = 3;
 const YEARS_RANGE = 4;
 
 export {

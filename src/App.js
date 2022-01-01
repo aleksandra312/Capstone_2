@@ -8,6 +8,7 @@ import ExternalApi from "./api/externalApi";
 import StatesTrendsApi from "./api/statesTrendsApi";
 import LoadingSpinner from "./LoadingSpinner";
 import NavBar from "./navigation/NavBar";
+import StatesContext from "./StatesContext";
 import { v4 as uuid } from "uuid";
 
 function App() {
@@ -44,34 +45,25 @@ function App() {
   if (!statesData) return <LoadingSpinner />;
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <StatesMap statesData={statesData} setStateInfo={setStateInfo} />
-            }
-          />
-          <Route
-            path="/state/:name"
-            element={<State stateId={stateInfo.stateId} comments={comments} />}
-          />
-          <Route
-            path="/state/:name/trend/new"
-            element={
-              <NewCommentForm
-                addComment={handleAddComment}
-                usState={stateInfo.stateName}
-              />
-            }
-          />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <StatesContext.Provider value={{ stateInfo, setStateInfo, statesData }}>
+        <div className="App">
+          <NavBar />
+          <Routes>
+            <Route exact path="/" element={<StatesMap />} />
+            <Route
+              path="/state/:name"
+              element={<State comments={comments} />}
+            />
+            <Route
+              path="/state/:name/trend/new"
+              element={<NewCommentForm addComment={handleAddComment} />}
+            />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </div>
+      </StatesContext.Provider>
+    </BrowserRouter>
   );
 }
 

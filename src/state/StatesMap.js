@@ -1,10 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import StatesContext from "../StatesContext";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import "../stylesheets/StatesMap.css";
 
-function StatesMap({ statesData, setStateInfo }) {
+function StatesMap() {
+  const { stateInfo, setStateInfo } = useContext(StatesContext);
+  const { statesData } = useContext(StatesContext);
+
   const navigate = useNavigate();
   const svgRef = useRef(null);
   const path = d3.geoPath();
@@ -54,6 +58,7 @@ function StatesMap({ statesData, setStateInfo }) {
 
   function handleClick(event, d) {
     setStateInfo({ stateId: d.id, stateName: d.properties.name });
+    console.log("TEST", stateInfo);
     navigate(`/state/${d.properties.name}`);
   }
 
