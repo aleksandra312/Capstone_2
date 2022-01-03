@@ -1,0 +1,9 @@
+.StatesRankings {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.StatesRankings-list :hover {
+  text-decoration: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}

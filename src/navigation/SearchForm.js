@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import StatesContext from "../StatesContext";
-import { capitalizeFirstLetter } from "../helpers/helpers";
+import { toTitleCase } from "../helpers/helpers";
 
 function SearchForm() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function SearchForm() {
   };
 
   function handleChange(evt) {
-    const search = capitalizeFirstLetter(evt.target.value.toLowerCase());
+    const search = toTitleCase(evt.target.value);
     setSearchTerm(search);
   }
 

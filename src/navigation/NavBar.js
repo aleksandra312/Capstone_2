@@ -11,6 +11,9 @@ function NavBar() {
         <Link className="NavBar-link navbar-brand" to="/">
           States Map
         </Link>
+        <Link className="NavBar-link navbar-brand" to="/states/trend">
+          States Rankings
+        </Link>
         <SearchForm />
       </div>
     </nav>

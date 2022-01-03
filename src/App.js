@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import useLocalStorage from "./hooks/useLocalStorage";
 import StatesMap from "./state/StatesMap";
 import State from "./state/State";
+import StatesRankingsList from "./survey/StatesRankingsList";
 import NewCommentForm from "./survey/NewCommentForm";
 import ExternalApi from "./api/externalApi";
 import StatesTrendsApi from "./api/statesTrendsApi";
@@ -58,6 +59,11 @@ function App() {
             <Route
               path="/state/:name/trend/new"
               element={<NewCommentForm addComment={handleAddComment} />}
+            />
+            <Route
+              exact
+              path="/states/trend"
+              element={<StatesRankingsList />}
             />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

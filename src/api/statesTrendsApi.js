@@ -31,11 +31,12 @@ class StatesTrendsApi {
     usState = "",
     fromDate = "",
     toDate = "",
-    username = ""
+    username = "",
+    orderBy = ""
   ) {
     try {
       let res = await axios.get(
-        `${BASE_URL}/comments/trend?usState=${usState}&username=${username}&fromDate=${fromDate}&toDate=${toDate}`
+        `${BASE_URL}/comments/trend?usState=${usState}&username=${username}&fromDate=${fromDate}&toDate=${toDate}&orderBy=${orderBy}`
       );
       return res.data.survey;
     } catch (err) {

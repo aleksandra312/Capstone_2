@@ -50,7 +50,7 @@ function NewCommentForm({ addComment }) {
       <div class="form-group">
         <label htmlFor="isRelocate">Would you move to {usState}?</label>
         <select
-          className="form-control"
+          className="form-control form-select"
           type="text"
           id="isRelocate"
           name="isRelocate"
